@@ -1,11 +1,13 @@
 import 'styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ErrorBoundary } from 'containers'
+import { ErrorBoundary, Layout } from 'containers'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ErrorBoundary>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ErrorBoundary>
   )
 }
