@@ -1,6 +1,7 @@
 import 'styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ErrorBoundary, Layout } from 'containers'
+import { Backdrop } from 'components'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -8,6 +9,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <Backdrop />
     </ErrorBoundary>
   )
 }

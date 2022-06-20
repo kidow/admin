@@ -1,18 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import type { FC } from 'react'
 import { Spinner } from 'components'
 import { createPortal } from 'react-dom'
-import dynamic from 'next/dynamic'
+import { EventListener } from 'services'
 
-interface Props {}
+const Backdrop: FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
-const Backdrop: FC<Props> = () => {
+  const onBackdrop = useCallback(
+    ({ detail }: any) => {
+      setIsOpen(detail.open)
+      if (detail.open) document.body.style.overflow = 'hidden'
+      else document.body.removeAttribute('style')
+    },
+    [isOpen]
+  )
+
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.removeAttribute('style')
-    }
+    EventListener.add('backdrop', onBackdrop)
+    return () => EventListener.remove('backdrop', onBackdrop)
   }, [])
+  if (!isOpen) return null
   return createPortal(
     <div role="progressbar">
       <div className="fixed inset-0 cursor-progress bg-black opacity-30" />
@@ -24,6 +32,4 @@ const Backdrop: FC<Props> = () => {
   )
 }
 
-export default dynamic(() => Promise.resolve(() => <Backdrop />), {
-  ssr: false
-})
+export default Backdrop
