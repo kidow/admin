@@ -8,9 +8,9 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <section className="flex">
+      <section className="flex h-[calc(100vh-53px)] w-full">
         <Menu />
-        <main>{children}</main>
+        <main className="w-full bg-neutral-100 p-8">{children}</main>
       </section>
     </>
   )
