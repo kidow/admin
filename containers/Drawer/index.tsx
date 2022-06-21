@@ -5,6 +5,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { createPortal } from 'react-dom'
 import { EventListener } from 'services'
 import dynamic from 'next/dynamic'
+import { Menu } from 'containers'
 
 interface Props extends ReactProps {}
 
@@ -53,7 +54,11 @@ const Drawer: FC<Props> = () => {
             { 'translate-x-full sm:translate-x-[calc(100vw/3)]': !isOpen }
           )}
         >
-          {isOpen && <div>asd</div>}
+          {isOpen && (
+            <div>
+              <Menu />
+            </div>
+          )}
           <button
             onClick={() => setIsOpen(false)}
             className="absolute right-4 top-4 inline-block sm:hidden"
