@@ -13,6 +13,7 @@ const HomePage: NextPage = () => {
           본 것입니다.
         </div>
         <div>무엇이든 자유롭게 테스트하셔도 됩니다.</div>
+        <i>현재는 구축 중에 있습니다.</i>
       </div>
     </>
   )
